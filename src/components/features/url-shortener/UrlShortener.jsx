@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import { UrlForm } from "./UrlForm.jsx";
 import { UrlResult } from "./UrlResult.jsx";
-import { shortenUrl } from "../../../services/urlService.jsx";
+import { shortenUrl,clickCounter } from "../../../services/urlService.jsx";
 
 export function UrlShortener() {
     const [url, setUrl] = useState(() => localStorage.getItem("shortenerUrl") || '');
     const [result, setResult] = useState(() => localStorage.getItem("shortenerResult") || '');
+    const [count, setCount] = useState(() => localStorage.getItem("countResult") || '');
     const [error, setError] = useState('');
 
     useEffect(() => {
         localStorage.setItem("shortenerUrl", url);
         localStorage.setItem("shortenerResult", result);
-    }, [url, result]);
+        localStorage.setItem("countResult", count);
+    }, [url, result, count]);
 
     async function handleShorten() {
         if (!url.trim()) {
@@ -24,8 +26,23 @@ export function UrlShortener() {
         }
         setError('');
         const data = await shortenUrl(url);
+
         setResult(data);
     }
+    useEffect(() => {
+        if (!result) return;
+        const shortCode =
+            result.split('/').pop();
+        const interval = setInterval(
+            async () => {
+                const click =
+                    await clickCounter(shortCode);
+                setCount(click);
+            },
+            2000
+        );
+        return () => clearInterval(interval);
+    }, [result]);
 
     function handleEnter(e) {
         if (e.key === 'Enter') {
@@ -41,6 +58,7 @@ export function UrlShortener() {
     function handleReset() {
         setUrl('');
         setResult('');
+        setCount('');
     }
 
     return (
@@ -52,7 +70,7 @@ export function UrlShortener() {
                 handleShorten={handleShorten} 
                 error={error} 
             />
-            {result && <UrlResult result={result} handleReset={handleReset} />}
+            {result && <UrlResult result={result} count={count} handleReset={handleReset} />}
         </div>
     );
 }

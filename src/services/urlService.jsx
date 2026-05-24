@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function shortenUrl(url){
     const response = await axios.post(
-        'http://localhost:8080/url/shorten',
+        'https://url04.up.railway.app/url/shorten',
         {
             originalUrl : url
         }
@@ -12,7 +12,7 @@ export async function shortenUrl(url){
 
 export async function clickCounter(url){
     const response=await axios.get(
-        `http://localhost:8080/url/analytics/${url}`
+        `https://url04.up.railway.app/url/analytics/${url}`
     )
     return response.data.clickCount;
 }
