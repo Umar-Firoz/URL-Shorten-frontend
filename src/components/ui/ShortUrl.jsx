@@ -14,11 +14,11 @@ export function ShortUrl({ newUrl }) {
     }
 
     return (
-        <div className=" flex flex-col gap-4 sm:flex-row  w-full max-w-[650px] items-center justify-between rounded-[18px] border border-[#27272a] bg-[var(--background)] p-4 pl-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-290 hover:border-[#3f3f46]">
+        <div className=" flex flex-col gap-4 sm:flex-col md:flex-row  w-full max-w-[650px] items-center justify-between rounded-[18px] border border-[#27272a] bg-[var(--background)] p-4 pl-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-290 hover:border-[#3f3f46]">
             <a href ={newUrl}
                target="_blank"
                rel="noopener noreferrer" className="cursor-pointer ">
-                <div className="truncate text-[22px] font-medium text-[var(--text-primary)] hover:text-(--text-secondary) tracking-wide mr-4">
+                <div className="truncate text-[20px] sm:text-[22px] text-center font-medium text-(--text-purple) hover:text-(--text-secondary) tracking-wide mr-4">
                     {newUrl}
                 </div>
             </a>
