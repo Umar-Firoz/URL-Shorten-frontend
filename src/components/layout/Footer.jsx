@@ -17,10 +17,10 @@ export function Footer() {
                 &copy; {new Date().getFullYear()} URL Shorten. Made by Umar.
             </div>
             <div className="flex items-center gap-5">
-                <a href="#" className="transition-all hover:scale-110 hover:text-[var(--text-primary)]" aria-label="GitHub">
+                <a href="https://github.com/Umar-Firoz" target="_blank" className="transition-all hover:scale-110 hover:text-[var(--text-primary)]" aria-label="GitHub">
                     <GithubIcon className="h-6 w-6" />
                 </a>
-                <a href="#" className="transition-all hover:scale-110 hover:text-[var(--text-primary)]" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/umar-firoz-878a05325/" target="_blank" className="transition-all hover:scale-110 hover:text-[var(--text-primary)]" aria-label="LinkedIn">
                     <LinkedinIcon className="h-6 w-6" />
                 </a>
             </div>
